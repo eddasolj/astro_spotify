@@ -1,0 +1,66 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SearchCard from "../components/SearchCard.astro";
+import ShelfSearch from "../components/ShelfSearch.astro";
+const ShowNewBar = true;
+const hasSearch = true;
+---
+
+<MainLayout hasSearch={true} , title="Search">
+  {hasSearch && <input type="text" />}
+  <ShelfSearch>
+    <SearchCard title="Podcast" ShowNewBar={true} />
+    <SearchCard title="Made For You" />
+    <SearchCard title="Charts" />
+    <SearchCard title="New Releases" ShowNewBar={true} />
+    <SearchCard title="Discover" />
+  </ShelfSearch>
+  <ShelfSearch>
+    <SearchCard title="Live Events" />
+    <SearchCard title="Pop" />
+    <SearchCard title="Summer" ShowNewBar={true} />
+    <SearchCard title="Party" />
+    <SearchCard title="Chill" />
+  </ShelfSearch>
+</MainLayout>
+<style>
+  body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "nav topbar"
+      "nav main"
+      "footer footer";
+    height: 100%;
+  }
+  :global(main) {
+    grid-area: main;
+  }
+  :global(nav) {
+    grid-area: nav;
+  }
+  :global(.topbar) {
+    grid-area: topbar;
+  }
+  :global(footer) {
+    grid-area: footer;
+  }
+
+  main {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: var(--space-xxl);
+
+    background: linear-gradient(#1f1f1f 0, var(--surface-default) 100%) 0 0 / 100% 20rem no-repeat, var(--surface-default);
+
+    overflow-y: auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  @media (width > 1000px) {
+    main {
+      padding: var(--space-lg) var(--space-xl);
+    }
+  }
+</style>

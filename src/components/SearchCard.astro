@@ -1,0 +1,72 @@
+---
+const { title, body, ShowNewBar } = Astro.props;
+---
+
+<li>
+  <article>
+    <h3>
+      <a href="#0">{title}</a>
+    </h3>
+    {ShowNewBar && <p>New</p>}
+    <figure>
+      <div class="box"></div>
+    </figure>
+  </article>
+  <p>{body}</p>
+</li>
+
+<style>
+  .box {
+    width: 10vw;
+    background-color: #1ed760;
+    aspect-ratio: 1/1;
+  }
+
+  article {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    background: var(--surface-light);
+    border-radius: var(--border-radius-medium);
+    transition: background 0.3s ease;
+  }
+
+  article:hover {
+    background: var(--surface-light-hover);
+  }
+
+  h3 {
+    margin-bottom: var(--space-xxxs);
+  }
+
+  h3 a {
+    color: inherit;
+  }
+
+  a::before {
+    content: "";
+    inset: 0;
+    position: absolute;
+  }
+
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  figure {
+    display: grid;
+    grid: "stack";
+    place-items: start;
+    order: -1;
+    margin-bottom: var(--space-md);
+    color: var(--text-white);
+  }
+
+  figure > * {
+    grid-area: stack;
+  }
+</style>
